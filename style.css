@@ -1,0 +1,16 @@
+h1{
+    color:tomato;
+}
+
+button{
+    height: 60px;
+    width: 60px;
+}
+
+.numbers button{
+    background-color: aquamarine;
+}
+
+.operators button{
+    background-color: orangered;
+}
