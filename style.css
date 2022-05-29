@@ -1,14 +1,17 @@
 h1{
-    color:tomato;
+    color:black;
 }
 
 .display{
     background-color: grey;
     height: 2em;
+    text-align: center;
 }
 
 .container{
     background-color: darkblue;
+    max-width: 600px;
+    margin:auto;
 }
 
 button{
@@ -18,6 +21,25 @@ button{
     font-size: large;
     color: whitesmoke;
     
+}
+
+.buttons{
+    display:flex;
+    gap: 80px;
+}
+
+.buttons .numbers{
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+}
+
+.buttons .operators{
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+}
+
+.row .numbers{
+    flex-wrap: nowrap;
 }
 
 .numbers button{

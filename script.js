@@ -12,6 +12,7 @@ let isNew = true;
 
 
 
+
 //all the number buttons
 const oneBtn = document.getElementById('one');
 const twoBtn = document.getElementById('two');
@@ -72,116 +73,56 @@ function clear(){
     setDisplay("");
 }
 
+function numberButton(x){
+    if(isNew == true){
+        display.innerText = x;
+        displayNumber = display.innerText;
+        isNew = false;
+        } else {
+        display.innerText += x;
+        displayNumber = display.innerText;
+        }
+}
+
 //click functionality for all of the number buttons
 oneBtn.addEventListener('click', () => {
-
-    if(isNew == true){
-    display.innerText = "1";
-    displayNumber = display.innerText;
-    isNew = false;
-    } else {
-    display.innerText += "1";
-    displayNumber = display.innerText;
-    }
-} );
+    numberButton("1")
+});
 
 twoBtn.addEventListener('click', () => {
-    if(isNew == true){
-        display.innerText = "2";
-        displayNumber = display.innerText;
-        isNew = false;
-        } else {
-        display.innerText += "2";
-        displayNumber = display.innerText;
-        }
-} );
+    numberButton("2");
+ } );
 
 threeBtn.addEventListener('click', () => {
-    if(isNew == true){
-        display.innerText = "3";
-        displayNumber = display.innerText;
-        isNew = false;
-        } else {
-        display.innerText += "3";
-        displayNumber = display.innerText;
-        }
+    numberButton("3");
 } );
 
 fourBtn.addEventListener('click', () => {
-    if(isNew == true){
-        display.innerText = "4";
-        displayNumber = display.innerText;
-        isNew = false;
-        } else {
-        display.innerText += "4";
-        displayNumber = display.innerText;
-        }
+    numberButton("4");
 } );
 
 fiveBtn.addEventListener('click', () => {
-    if(isNew == true){
-        display.innerText = "5";
-        displayNumber = display.innerText;
-        isNew = false;
-        } else {
-        display.innerText += "5";
-        displayNumber = display.innerText;
-        }
+    numberButton("5");
 } );
 
 sixBtn.addEventListener('click', () => {
-    if(isNew == true){
-        display.innerText = "6";
-        displayNumber = display.innerText;
-        isNew = false;
-        } else {
-        display.innerText += "6";
-        displayNumber = display.innerText;
-        }
+    numberButton("6");
 } );
 
 sevenBtn.addEventListener('click', () => {
-    if(isNew == true){
-        display.innerText = "7";
-        displayNumber = display.innerText;
-        isNew = false;
-        } else {
-        display.innerText += "7";
-        displayNumber = display.innerText;
-        }
+    numberButton("7");
 } );
 
 eightBtn.addEventListener('click', () => {
-    if(isNew == true){
-        display.innerText = "8";
-        displayNumber = display.innerText;
-        isNew = false;
-        } else {
-        display.innerText += "8";
-        displayNumber = display.innerText;
-        }
+    numberButton("8");
 } );
 
 nineBtn.addEventListener('click', () => {
-    if(isNew == true){
-        display.innerText = "9";
-        displayNumber = display.innerText;
-        isNew = false;
-        } else {
-        display.innerText += "9";
-        displayNumber = display.innerText;
-        }
+    numberButton("9");
 } );
 
 zeroBtn.addEventListener('click', () => {
-    if(isNew == true){
-        display.innerText = "0";
-        displayNumber = display.innerText;
-        isNew = false;
-        } else {
-        display.innerText += "0";
-        displayNumber = display.innerText;
-        }
+    numberButton("0");
 } );
 
 
@@ -196,138 +137,72 @@ clearBtn.addEventListener('click', () => {
 } );
 
 addBtn.addEventListener('click', () => {
-    console.log("START OF ADD: first: " + firstNumber + " second: " + secondNumber + " result: " + result + " displayNumber: " + displayNumber);
-    isNew = true;
-    
-    if(operator === "subtract" || operator === "multiply" || operator === "divide"){
-    result = operate(operator,firstNumber,displayNumber);
-    display.innerText = result;
-    firstNumber = displayNumber;
-    result = firstNumber;
-    }
-    else if(operator !== "add"){
-    operator = "add";
-    result = operate(operator,firstNumber,displayNumber);
-    display.innerText = result;
-    firstNumber = displayNumber;
-    result = firstNumber;
-    
-    console.log("END OF ADD: first: " + firstNumber + " second: " + secondNumber + " result: " + result + " displayNumber: " + displayNumber);
-
-    
-    } else if(operator === "add"){
+    if(operator === "add" || operator === "subtract" || operator === "multiply" || operator === "divide"){
         secondNumber = displayNumber;
-        result = operate(operator,firstNumber,displayNumber);
-        firstNumber = result;
-        secondNumber = firstNumber;
+        result = operate(operator,firstNumber,secondNumber);
         displayNumber = result;
-        display.innerText = result;
-        console.log("END OF ADD IF: first: " + firstNumber + " second: " + secondNumber + " result: " + result + " displayNumber: " + displayNumber);
+        display.innerText = displayNumber;
+        firstNumber = result;
+        operator = "add";
+        isNew = true;
+    } else if(operator === ""){
+        firstNumber = displayNumber;
+        operator = "add";
+        isNew = true;
 
     }
-
-
+    
 });
 
 subtractBtn.addEventListener('click', () => {
-    console.log("START OF SUBTRACT: first: " + firstNumber + " second: " + secondNumber + " result: " + result + " displayNumber: " + displayNumber);
-    isNew = true;
-    
-    if(operator === "add" || operator === "multiply" || operator === "divide"){
-        result = operate(operator,firstNumber,displayNumber);
-        display.innerText = result;
-        firstNumber = displayNumber;
-        result = firstNumber;
-        }
-
-    else if(operator !== "subtract"){
-    operator = "subtract";
-    result = operate(operator,firstNumber,displayNumber);
-    display.innerText = result;
-    firstNumber = displayNumber;
-    result = firstNumber;
-    
-    console.log("END OF SUBTRACT: first: " + firstNumber + " second: " + secondNumber + " result: " + result + " displayNumber: " + displayNumber);
-
-    
-    } else if(operator === "subtract"){
-        firstNumber = result;
-        result = operate(operator,firstNumber,displayNumber);
-        firstNumber = result;
-        secondNumber = firstNumber;
+    if(operator === "add" || operator === "subtract" || operator === "multiply" || operator === "divide"){
+        secondNumber = displayNumber;
+        result = operate(operator,firstNumber,secondNumber);
         displayNumber = result;
-        display.innerText = result;
-        console.log("END OF SUBTRACT IF: first: " + firstNumber + " second: " + secondNumber + " result: " + result + " displayNumber: " + displayNumber);
+        display.innerText = displayNumber;
+        firstNumber = result;
+        operator = "subtract";
+        isNew = true;
+    } else if(operator === ""){
+        firstNumber = displayNumber;
+        operator = "subtract";
+        isNew = true;
 
     }
-
 });
 
 multiplyBtn.addEventListener('click', () => {
-    console.log("START OF MULTIPLY: first: " + firstNumber + " second: " + secondNumber + " result: " + result + " displayNumber: " + displayNumber);
-    isNew = true;
-    
-    if(operator === "subtract" || operator === "add" || operator === "divide"){
-        result = operate(operator,firstNumber,displayNumber);
-        display.innerText = result;
-        firstNumber = displayNumber;
-        result = firstNumber;
-        }
-    
-    else if(operator !== "multiply"){
-    operator = "multiply";
-    result = operate(operator,firstNumber,displayNumber);
-    display.innerText = result;    
-    firstNumber = displayNumber;
-    result = firstNumber;
-    
-    console.log("END OF MULTIPLY: first: " + firstNumber + " second: " + secondNumber + " result: " + result + " displayNumber: " + displayNumber);
-
-    
-    } else if(operator === "multiply"){
+    if(operator === "add" || operator === "subtract" || operator === "multiply" || operator === "divide"){
         secondNumber = displayNumber;
-        result = operate(operator,firstNumber,displayNumber);
-        firstNumber = result;
-        secondNumber = firstNumber;
+        result = operate(operator,firstNumber,secondNumber);
         displayNumber = result;
-        display.innerText = result;
-        console.log("END OF MULTIPLY IF: first: " + firstNumber + " second: " + secondNumber + " result: " + result + " displayNumber: " + displayNumber);
+        display.innerText = displayNumber;
+        firstNumber = result;
+        operator = "multiply";
+        isNew = true;
+    } else if(operator === ""){
+        firstNumber = displayNumber;
+        operator = "multiply";
+        isNew = true;
 
     }
 });
 
 divideBtn.addEventListener('click', () => {
-    console.log("START OF DIVIDE: first: " + firstNumber + " second: " + secondNumber + " result: " + result + " displayNumber: " + displayNumber);
-    isNew = true;
-    
-    if(operator === "subtract" || operator === "multiply" || operator === "add"){
-        result = operate(operator,firstNumber,displayNumber);
-        display.innerText = result;
-        firstNumber = displayNumber;
-        result = firstNumber;
-        }
-    
-    else if(operator !== "divide"){
-    operator = "divide";
-    result = operate(operator,firstNumber,displayNumber);
-    display.innerText = result;
-    firstNumber = displayNumber;
-    result = firstNumber;
-    
-    console.log("END OF DIVIDE: first: " + firstNumber + " second: " + secondNumber + " result: " + result + " displayNumber: " + displayNumber);
-
-    
-    } else if(operator === "divide"){
+    if(operator === "add" || operator === "subtract" || operator === "multiply" || operator === "divide"){
         secondNumber = displayNumber;
-        result = operate(operator,firstNumber,displayNumber);
-        firstNumber = result;
-        secondNumber = firstNumber;
+        result = operate(operator,firstNumber,secondNumber);
         displayNumber = result;
-        display.innerText = result;
-        console.log("END OF DIVIDE IF: first: " + firstNumber + " second: " + secondNumber + " result: " + result + " displayNumber: " + displayNumber);
+        display.innerText = displayNumber;
+        firstNumber = result;
+        operator = "divide";
+        isNew = true;
+    } else if(operator === ""){
+        firstNumber = displayNumber;
+        operator = "divide";
+        isNew = true;
 
     }
-
 });
 
 equalsBtn.addEventListener('click', () => {
